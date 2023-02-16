@@ -1,9 +1,9 @@
 <template>
-  <Navbar/>
+  <Settings/>
 </template>
 
 <script setup>
-import Navbar from '@/components/Navbar.vue';
+import Settings from "@/components/Settings.vue";
 </script>
 
 <style scoped>

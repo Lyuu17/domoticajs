@@ -26,6 +26,9 @@
                 <RouterLink :to="{ name: 'home' }" class="block px-4 py-2 hover:bg-gray-100">Dashboard</RouterLink>
               </li>
               <li>
+                <RouterLink :to="{ name: 'settings' }" class="block px-4 py-2 hover:bg-gray-100">Ajustes</RouterLink>
+              </li>
+              <li>
                 <RouterLink :to="{ name: 'logout' }" class="block px-4 py-2 hover:bg-gray-100">Cerrar Sesión</RouterLink>
               </li>
             </ul>
