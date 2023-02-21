@@ -23,8 +23,8 @@
           <!-- Executor -->
           <div v-else>
             <button class="w-16 h-16" @click="switchExecutor(room.name, device.name)">
-              <LightBulbOff v-if="!device.status"/>
-              <LightBulbOn v-if="device.status"/>
+              <LightBulbOff v-if="!device.status" fill="#000"/>
+              <LightBulbOn v-if="device.status" fill="#ffcc00"/>
             </button>
           </div>
         </div>
