@@ -131,11 +131,20 @@ const addComponent = async () => {
         return;
       }
 
-      const { name } = doc.data();
-      await addRoomDevices(db, name, [{
+      const deviceTemplate = {
         name: device_name.value,
         type: device_type.value
-      }]);
+      };
+
+      if (device_type.value == deviceTypes.SENSOR) {
+        deviceTemplate["temp"] = 0.0;
+      }
+      else if (device_type.value == deviceTypes.EXECUTOR) {
+        deviceTemplate["status"] = false;
+      }
+
+      const { name } = doc.data();
+      await addRoomDevices(db, name, [deviceTemplate]);
 
       alert("Dispositivo añadido");
 
