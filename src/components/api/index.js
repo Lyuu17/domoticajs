@@ -30,3 +30,22 @@ export const addRoomDevices = async (db, room, data) => {
 
   return true;
 }
+
+export const switchRoomDevice = async (db, room, device) => {
+  const doc = await queryRoom(db, room);
+  if (doc == null)
+    return false;
+
+  const data = doc.data();
+
+  const { devices } = data;
+
+  for (let idx in devices) {
+    if (devices[idx].name == device) {
+      devices[idx].status = !devices[idx].status;
+      break;
+    }
+  }
+
+  await updateDoc(doc.ref, {...data});
+}
