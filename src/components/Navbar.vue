@@ -1,13 +1,20 @@
 <template>
+  <AddComponentModal v-if="componentMenu" @closeModal="componentMenu = false"/>
+
   <nav class="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <RouterLink :to="{ name: 'home' }" class="flex items-center">
         <span class="self-center text-xl font-semibold whitespace-nowrap">domoticajs</span>
       </RouterLink>
 
-      <div class="relative inline-block">
+      <div class="relative">
+        <button @click="componentMenu = !componentMenu" 
+          class="relative z-10 p-2 text-white bg-blue-500 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
+          <AddIcon/>
+        </button>
+
         <button @click="expanded = !expanded" 
-          class="relative z-10 block p-2 text-gray-700 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
+          class="relative z-10 p-2 text-gray-700 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
           <MenuIcon/>
         </button>
 
@@ -42,8 +49,12 @@
 import { ref } from "vue";
 import { getCurrentUser } from "vuefire";
 
+import AddIcon from "@/components/icons/AddIcon.vue";
 import MenuIcon from "@/components/icons/MenuIcon.vue";
 
+import AddComponentModal from "@/components/AddComponentModal.vue";
+
+const componentMenu = ref(false);
 const expanded = ref(false);
 
 const username = ref(""), email = ref("");
