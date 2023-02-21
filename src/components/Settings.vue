@@ -1,7 +1,5 @@
 <template>
-  <Navbar/>
-
-  <div class="mt-20 m-auto w-1/2">
+  <div class="m-auto w-1/2">
     <label for="nombre">Nombre</label>
     <input type="text" name="nombre" v-model="nombre" placeholder="Nombre">
     
@@ -19,7 +17,6 @@
 import { ref } from "vue";
 import { getCurrentUser } from "vuefire";
 
-import Navbar from "@/components/Navbar.vue";
 import { getAuth, updateEmail, updatePassword, updateProfile } from "@firebase/auth";
 
 const nombre = ref(""), email = ref(""), password = ref("");
