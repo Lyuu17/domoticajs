@@ -8,7 +8,9 @@ import Navbar from './components/Navbar.vue';
     <Navbar/>
   </header>
 
-  <RouterView class="mt-20" />
+  <div class="mt-20">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
