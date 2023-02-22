@@ -9,14 +9,14 @@
       <div class="mt-2 flex flex-row">
         <div v-for="device, ii in room.devices" :key="ii"
           class="border rounded p-1 mr-1 w-32 h-32 bg-white">
-          <h2 class="text-center">
+          <h2 class="text-center text-md">
             {{ device.name }}
           </h2>
 
           <div class="flex justify-center h-1/2 m-auto">
             <!-- Sensor -->
             <div v-if="device.type == 0">
-              <p class="flex flex-col justify-center h-[100%]">
+              <p class="flex flex-col justify-center h-[100%] text-2xl">
                 {{ device.temp }} {{ device.suffix }}
               </p>
             </div>
