@@ -23,8 +23,15 @@
           <!-- Executor -->
           <div v-else>
             <button class="w-16 h-16" @click="switchExecutor(room.name, device.name)">
-              <LightBulbOff v-if="!device.status" fill="#000"/>
-              <LightBulbOn v-if="device.status" fill="#ffcc00"/>
+              <span v-if="device.iconSet == 'bulb'">
+                <LightBulbOff v-if="!device.status" fill="#000"/>
+                <LightBulbOn v-if="device.status" fill="#ffcc00"/>
+              </span>
+
+              <span v-if="device.iconSet == 'toggleSwitch'">
+                <ToggleSwitchOff v-if="!device.status" fill=""/>
+                <ToggleSwitch v-if="device.status" fill=""/>
+              </span>
             </button>
           </div>
         </div>
@@ -39,6 +46,8 @@ import { getRoomCollection, switchRoomDevice } from "@/components/api";
 
 import LightBulbOn from "@/components/icons/LightBulbOn.vue";
 import LightBulbOff from "@/components/icons/LightBulbOff.vue";
+import ToggleSwitch from "@/components/icons/ToggleSwitch.vue";
+import ToggleSwitchOff from "@/components/icons/ToggleSwitchOff.vue";
 
 const db = useFirestore();
 

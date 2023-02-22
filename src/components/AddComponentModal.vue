@@ -61,6 +61,15 @@
                     </label>
                   </div>
                 </div>
+
+                <div class="mt-2" v-if="device_type == deviceTypes.EXECUTOR">
+                    <label for="iconSet" class="text-sm">Icono
+                      <select id="iconSet" v-model="device_icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option selected></option>
+                        <option v-for="e, i in iconSet" :key="i" :value="i">{{ e }}</option>
+                      </select>
+                    </label>
+                  </div>
               </div>
             </div>
           </div>
@@ -97,6 +106,11 @@ const deviceTypes = {
   EXECUTOR: 1
 };
 
+const iconSet = {
+  bulb: "Bombilla",
+  toggleSwitch: "Interruptor"
+};
+
 const componentType = ref(componentTypes.ROOM), deviceType = ref(deviceTypes.SENSOR);
 
 const 
@@ -104,7 +118,8 @@ const
 const 
   device_name = ref(""),
   device_type = ref(0),
-  device_room = ref("");
+  device_room = ref(""),
+  device_icon = ref("");
 
 const emits = defineEmits("closeModal");
 
@@ -141,6 +156,7 @@ const addComponent = async () => {
       }
       else if (device_type.value == deviceTypes.EXECUTOR) {
         deviceTemplate["status"] = false;
+        deviceTemplate["iconSet"] = device_icon.value;
       }
 
       const { name } = doc.data();
