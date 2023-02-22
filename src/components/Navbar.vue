@@ -14,7 +14,7 @@
         </button>
 
         <button @click="expanded = !expanded" 
-          class="relative z-10 p-2 text-gray-700 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
+          class="relative z-10 p-2 ml-2 text-gray-700 bg-white border border-transparent rounded-md border-gray-700 focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
           <MenuIcon/>
         </button>
 
