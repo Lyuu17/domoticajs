@@ -8,31 +8,33 @@
 
       <div class="flex flex-row">
         <div v-for="device, ii in room.devices" :key="ii"
-          class="border p-1 mr-1">
+          class="border p-1 mr-1 w-32 h-32">
           <h2 class="text-center">
             {{ device.name }}
           </h2>
 
-          <!-- Sensor -->
-          <div v-if="device.type == 0">
-            <p class="text-center">
-              {{ device.temp }} {{ device.suffix }}
-            </p>
-          </div>
+          <div class="flex justify-center h-1/2 m-auto">
+            <!-- Sensor -->
+            <div v-if="device.type == 0">
+              <p class="flex flex-col justify-center h-[100%]">
+                {{ device.temp }} {{ device.suffix }}
+              </p>
+            </div>
 
-          <!-- Executor -->
-          <div v-else>
-            <button class="w-16 h-16" @click="switchExecutor(room.name, device.name)">
-              <span v-if="device.iconSet == 'bulb'">
-                <LightBulbOff v-if="!device.status" fill="#ccc"/>
-                <LightBulbOn v-if="device.status" fill="#ffcc00"/>
-              </span>
+            <!-- Executor -->
+            <div v-else>
+              <button class="flex flex-col justify-center h-[100%] w-16" @click="switchExecutor(room.name, device.name)">
+                <span v-if="device.iconSet == 'bulb'">
+                  <LightBulbOff v-if="!device.status" fill="#ccc"/>
+                  <LightBulbOn v-if="device.status" fill="#ffcc00"/>
+                </span>
 
-              <span v-if="device.iconSet == 'toggleSwitch'">
-                <ToggleSwitchOff v-if="!device.status" fill="#ccc"/>
-                <ToggleSwitch v-if="device.status" fill="#0f0"/>
-              </span>
-            </button>
+                <span v-if="device.iconSet == 'toggleSwitch'">
+                  <ToggleSwitchOff v-if="!device.status" fill="#ccc"/>
+                  <ToggleSwitch v-if="device.status" fill="#0f0"/>
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
