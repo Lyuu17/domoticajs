@@ -62,6 +62,12 @@
                   </div>
                 </div>
 
+                <div class="mt-2" v-if="device_type == deviceTypes.SENSOR">
+                    <label for="device_suffix" class="text-sm">Sufijo
+                      <input type="text" id="device_suffix" v-model="device_suffix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    </label>
+                  </div>
+
                 <div class="mt-2" v-if="device_type == deviceTypes.EXECUTOR">
                     <label for="iconSet" class="text-sm">Icono
                       <select id="iconSet" v-model="device_icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
@@ -119,6 +125,7 @@ const
   device_name = ref(""),
   device_type = ref(0),
   device_room = ref(""),
+  device_suffix = ref("ºC"),
   device_icon = ref("");
 
 const emits = defineEmits("closeModal");
@@ -153,6 +160,7 @@ const addComponent = async () => {
 
       if (device_type.value == deviceTypes.SENSOR) {
         deviceTemplate["temp"] = 0.0;
+        deviceTemplate["suffix"] = device_suffix.value;
       }
       else if (device_type.value == deviceTypes.EXECUTOR) {
         deviceTemplate["status"] = false;

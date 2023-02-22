@@ -16,7 +16,7 @@
           <!-- Sensor -->
           <div v-if="device.type == 0">
             <p class="text-center">
-              {{ device.temp }} ºC
+              {{ device.temp }} {{ device.suffix }}
             </p>
           </div>
 
