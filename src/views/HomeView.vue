@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-row justify-center">
     <div v-for="room in roomsCollection" :key="room.id"
-      class="m-1">
-      <h1>
+      class="m-1 p-4 bg-slate-500">
+      <h1 class="text-center font-bold text-white">
         {{ room.name }}
       </h1>
 
-      <div class="flex flex-row">
+      <div class="mt-2 flex flex-row">
         <div v-for="device, ii in room.devices" :key="ii"
-          class="border p-1 mr-1 w-32 h-32">
+          class="border rounded p-1 mr-1 w-32 h-32 bg-white">
           <h2 class="text-center">
             {{ device.name }}
           </h2>
