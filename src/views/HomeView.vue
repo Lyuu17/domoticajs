@@ -24,13 +24,13 @@
           <div v-else>
             <button class="w-16 h-16" @click="switchExecutor(room.name, device.name)">
               <span v-if="device.iconSet == 'bulb'">
-                <LightBulbOff v-if="!device.status" fill="#000"/>
+                <LightBulbOff v-if="!device.status" fill="#ccc"/>
                 <LightBulbOn v-if="device.status" fill="#ffcc00"/>
               </span>
 
               <span v-if="device.iconSet == 'toggleSwitch'">
-                <ToggleSwitchOff v-if="!device.status" fill=""/>
-                <ToggleSwitch v-if="device.status" fill=""/>
+                <ToggleSwitchOff v-if="!device.status" fill="#ccc"/>
+                <ToggleSwitch v-if="device.status" fill="#0f0"/>
               </span>
             </button>
           </div>
