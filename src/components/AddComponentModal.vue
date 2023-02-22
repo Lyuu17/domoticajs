@@ -60,15 +60,14 @@
                       </label>
                     </label>
                   </div>
-                </div>
 
-                <div class="mt-2" v-if="device_type == deviceTypes.SENSOR">
+                  <div class="mt-2" v-if="device_type == deviceTypes.SENSOR">
                     <label for="device_suffix" class="text-sm">Sufijo
                       <input type="text" id="device_suffix" v-model="device_suffix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </label>
                   </div>
 
-                <div class="mt-2" v-if="device_type == deviceTypes.EXECUTOR">
+                  <div class="mt-2" v-if="device_type == deviceTypes.EXECUTOR">
                     <label for="iconSet" class="text-sm">Icono
                       <select id="iconSet" v-model="device_icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option selected></option>
@@ -76,6 +75,7 @@
                       </select>
                     </label>
                   </div>
+                </div>
               </div>
             </div>
           </div>
