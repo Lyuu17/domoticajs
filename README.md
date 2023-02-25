@@ -1,29 +1,9 @@
 # domoticajs
 
-This template should help get you started developing with Vue 3 in Vite.
+## Screenshots
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+![Login](https://i.imgur.com/yCwTxXj.png)
+![Dashboard](https://i.imgur.com/65DUEJ2.png)
+![Add Device](https://i.imgur.com/VGNRbV1.png)
+![Add Room](https://i.imgur.com/LinhFuR.png)
+![User Settings](https://i.imgur.com/vuo4qVu.png)
