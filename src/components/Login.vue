@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-6">
+  <div class="flex flex-col w-1/2 md:w-1/4 m-auto h-screen justify-center">
     <input type="email" id="email" @keydown.enter="login" v-model="email" placeholder="E-mail">
     <input type="password" id="password" class="mt-2" @keydown.enter="login" v-model="contraseña" placeholder="Contraseña">
   

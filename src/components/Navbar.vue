@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
+  <nav class="bg-white px-2 sm:px-4 py-2.5 sticky w-full z-20 top-0 left-0 border-b border-gray-200">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <RouterLink :to="{ name: 'home' }" class="flex items-center">
         <span class="self-center text-xl font-semibold whitespace-nowrap">domoticajs</span>
