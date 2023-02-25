@@ -1,7 +1,7 @@
 <template>
   <div class="m-auto w-1/2">
-    <label for="nombre">Nombre</label>
-    <input type="text" name="nombre" v-model="nombre" placeholder="Nombre">
+    <label for="name">Nombre</label>
+    <input type="text" name="name" v-model="name" placeholder="Nombre">
     
     <label for="email">E-mail</label>
     <input type="email" name="email" v-model="email" placeholder="E-mail">
@@ -14,22 +14,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { getCurrentUser } from "vuefire";
 
 import { getAuth, updateEmail, updatePassword, updateProfile } from "@firebase/auth";
 
-const nombre = ref(""), email = ref(""), password = ref("");
+const name = ref(""), email = ref(""), password = ref("");
 
-getCurrentUser().then((result) => {
-  nombre.value = result.displayName;
-  email.value = result.email;
+onMounted(async () => {
+  const user = await getCurrentUser();
+
+  name.value = user.displayName;
+  email.value = user.email;
 });
 
 const save = () => {
   if (password.value != "")
     updatePassword(getAuth().currentUser, password);
-  updateProfile(getAuth().currentUser, { displayName: nombre.value });
+  updateProfile(getAuth().currentUser, { displayName: name.value });
   updateEmail(getAuth().currentUser, email.value);
 }
 </script>

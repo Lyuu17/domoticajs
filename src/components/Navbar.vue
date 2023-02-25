@@ -39,17 +39,18 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { getCurrentUser } from "vuefire";
 
 import MenuIcon from "@/components/icons/MenuIcon.vue";
 
-const expanded = ref(false);
+const expanded = ref(false), username = ref(""), email = ref("");
 
-const username = ref(""), email = ref("");
-getCurrentUser().then((result) => {
-  username.value = result.displayName ? result.displayName : "Sin nombre";
-  email.value = result.email;
+onMounted(async () => {
+  const user = await getCurrentUser();
+
+  username.value = user.displayName ? user.displayName : "Sin nombre";
+  email.value = user.email;
 });
 </script>
 
