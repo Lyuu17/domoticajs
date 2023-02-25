@@ -1,4 +1,4 @@
-import { collection, addDoc, query, where, getDocs, updateDoc, arrayUnion, limit } from "@firebase/firestore";
+import { collection, addDoc, query, where, getDocs, updateDoc, arrayUnion, limit, deleteDoc } from "@firebase/firestore";
 
 export const getRoomCollection = (db) => {
   return collection(db, "rooms");
@@ -19,6 +19,11 @@ export const addRoom = async (db, name) => {
   });
 }
 
+export const removeRoom = async (db, name) => {
+  const doc = await queryRoom(db, name);
+  await deleteDoc(doc.ref);
+}
+
 export const addRoomDevices = async (db, room, data) => {
   const doc = await queryRoom(db, room);
   if (doc == null)
@@ -29,6 +34,17 @@ export const addRoomDevices = async (db, room, data) => {
   });
 
   return true;
+}
+
+export const removeRoomDevice = async (db, room, device) => {
+  const doc = await queryRoom(db, room);
+  if (doc == null)
+    return false;
+  
+  const data = doc.data();
+  data.devices = data.devices.filter(e => e.name != device);
+
+  await updateDoc(doc.ref, { ...data });
 }
 
 export const switchRoomDevice = async (db, room, device) => {

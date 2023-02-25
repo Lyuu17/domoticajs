@@ -4,14 +4,14 @@
 
   <div class="flex flex-row justify-center">
     <div v-for="room in roomsCollection" :key="room.id"
-      class="m-1 p-4 bg-slate-500">
+      class="m-1 p-4 bg-slate-500 relative">
       <h1 class="text-center font-bold text-white">
         {{ room.name }}
       </h1>
 
       <div class="mt-2 flex flex-row">
         <div v-for="device, ii in room.devices" :key="ii"
-          class="border rounded p-1 mr-1 w-32 h-32 bg-white">
+          class="border rounded p-1 mr-1 w-32 h-32 bg-white relative">
           <h2 class="text-center text-md">
             {{ device.name }}
           </h2>
@@ -23,6 +23,11 @@
             <!-- Executor -->
             <Executor v-if="device.type == 1" :device="device"/>
           </div>
+
+          <button @click="removeThisDevice(room.name, device.name)"
+            class="absolute top-0 right-0 m-1 text-white bg-red-500 border border-transparent rounded-md focus:border-red-500 focus:ring-opacity-40 focus:ring-red-300 focus:ring focus:outline-none">
+            <CloseIcon/>
+          </button>
         </div>
 
         <button @click="deviceModal = !deviceModal" 
@@ -30,6 +35,11 @@
           <AddIcon/>
         </button>
       </div>
+
+      <button @click="removeThisRoom(room.name)"
+        class="absolute top-0 right-0 m-1 text-white bg-red-500 border border-transparent rounded-md focus:border-red-500 focus:ring-opacity-40 focus:ring-red-300 focus:ring focus:outline-none">
+        <CloseIcon/>
+      </button>
     </div>
 
     <button @click="roomModal = !roomModal" 
@@ -42,9 +52,10 @@
 <script setup>
 import { ref } from "vue";
 import { useFirestore, useCollection } from "vuefire";
-import { getRoomCollection } from "@/components/api";
+import { getRoomCollection, removeRoom, removeRoomDevice } from "@/components/api";
 
 import AddIcon from "@/components/icons/AddIcon.vue";
+import CloseIcon from "@/components/icons/CloseIcon.vue";
 
 import Sensor from "@/components/Sensor.vue";
 import Executor from "@/components/Executor.vue";
@@ -57,6 +68,16 @@ const deviceModal = ref(false), roomModal = ref(false);
 const db = useFirestore();
 
 const roomsCollection = useCollection(getRoomCollection(db));
+
+const removeThisRoom = (room) => {
+  if (confirm("¿Borrar esta sala?"))
+    removeRoom(db, room)
+}
+
+const removeThisDevice = (room, device) => {
+  if (confirm("¿Borrar este dispositivo?"))
+    removeRoomDevice(db, room, device)
+}
 
 </script>
 
