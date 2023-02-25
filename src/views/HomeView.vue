@@ -21,7 +21,7 @@
             <Sensor v-if="device.type == 0" :device="device"/>
 
             <!-- Executor -->
-            <Executor v-if="device.type == 1" :device="device"/>
+            <Executor v-if="device.type == 1" :device="device" :room_name="room.name"/>
           </div>
 
           <button @click="removeThisDevice(room.name, device.name)"

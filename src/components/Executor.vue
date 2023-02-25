@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="flex flex-col justify-center h-[100%] w-16" @click="switchExecutor(room.name, device.name)">
+    <button class="flex flex-col justify-center h-[100%] w-16" @click="switchExecutor(room_name, device.name)">
       <span v-if="device.iconSet == 'bulb'">
         <LightBulbOff v-if="!device.status" fill="#ccc"/>
         <LightBulbOn v-if="device.status" fill="#ffcc00"/>
@@ -25,6 +25,7 @@ import ToggleSwitchOff from "@/components/icons/ToggleSwitchOff.vue";
 import { switchRoomDevice } from "@/components/api";
 
 defineProps({
+  room_name: String,
   device: Object
 });
 
