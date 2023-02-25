@@ -1,6 +1,6 @@
 <template>
   <AddRoomModal v-if="roomModal" @closeModal="roomModal = false"/>
-  <AddDeviceModal v-if="deviceModal" @closeModal="deviceModal = false"/>
+  <AddDeviceModal v-if="deviceModal" @closeModal="deviceModal = false" :deviceModalRoom="deviceModalRoom"/>
 
   <div class="flex flex-row justify-center">
     <div v-for="room in roomsCollection" :key="room.id"
@@ -30,7 +30,7 @@
           </button>
         </div>
 
-        <button @click="deviceModal = !deviceModal" 
+        <button @click="deviceModal = true; deviceModalRoom = room.name" 
           class="p-2 h-32 text-white bg-blue-500 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
           <AddIcon/>
         </button>
@@ -42,7 +42,7 @@
       </button>
     </div>
 
-    <button @click="roomModal = !roomModal" 
+    <button @click="roomModal = true" 
       class="p-2 text-white bg-green-500 border border-transparent rounded-md focus:border-green-500 focus:ring-opacity-40 focus:ring-green-300 focus:ring focus:outline-none">
       <AddIcon/>
     </button>
@@ -64,6 +64,7 @@ import AddRoomModal from "@/components/AddRoomModal.vue";
 import AddDeviceModal from "@/components/AddDeviceModal.vue";
 
 const deviceModal = ref(false), roomModal = ref(false);
+const deviceModalRoom = ref("");
 
 const db = useFirestore();
 

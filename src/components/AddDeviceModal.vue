@@ -7,16 +7,7 @@
         <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 class="text-lg font-medium leading-6 text-gray-900">Añadir componente</h3>
-
-              <div>
-                <label for="rooms" class="text-sm">Sala
-                  <select id="rooms" v-model="device_room" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option selected></option>
-                    <option v-for="e, i in rooms" :value="e.name">{{ e.name }}</option>
-                  </select>
-                </label>
-              </div>
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Añadir dispositivo a {{ deviceModalRoom }}</h3>
 
               <div class="mt-2">
                 <label for="device_name" class="text-sm">Nombre Dispositivo
@@ -71,16 +62,14 @@
 <script setup>
 
 import { ref } from "vue";
-import { useCollection, useFirestore } from "vuefire";
-import { getRoomCollection, queryRoom, addRoom, addRoomDevices } from "@/components/api";
+import { useFirestore } from "vuefire";
+import { queryRoom, addRoomDevices } from "@/components/api";
+
+const props = defineProps({
+  deviceModalRoom: String
+})
 
 const db = useFirestore();
-const rooms = useCollection(getRoomCollection(db));
-
-const componentTypes = {
-  ROOM: 0,
-  DEVICE: 1
-};
 
 const deviceTypes = {
   SENSOR: 0,
@@ -95,7 +84,6 @@ const iconSet = {
 const 
   device_name = ref(""),
   device_type = ref(0),
-  device_room = ref(""),
   device_suffix = ref("ºC"),
   device_icon = ref("");
 
@@ -103,7 +91,7 @@ const emits = defineEmits("closeModal");
 
 const addComponent = async () => {
 
-  const doc = await queryRoom(db, device_room.value);
+  const doc = await queryRoom(db, props.deviceModalRoom);
 
   if (doc == null)
   {
