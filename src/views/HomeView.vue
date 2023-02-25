@@ -31,7 +31,7 @@
         </div>
 
         <button @click="deviceModal = !deviceModal" 
-          class="relative z-10 p-2 h-32 text-white bg-blue-500 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
+          class="p-2 h-32 text-white bg-blue-500 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none">
           <AddIcon/>
         </button>
       </div>
@@ -43,7 +43,7 @@
     </div>
 
     <button @click="roomModal = !roomModal" 
-      class="relative z-10 p-2 text-white bg-green-500 border border-transparent rounded-md focus:border-green-500 focus:ring-opacity-40 focus:ring-green-300 focus:ring focus:outline-none">
+      class="p-2 text-white bg-green-500 border border-transparent rounded-md focus:border-green-500 focus:ring-opacity-40 focus:ring-green-300 focus:ring focus:outline-none">
       <AddIcon/>
     </button>
   </div>
