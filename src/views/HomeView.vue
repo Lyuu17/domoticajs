@@ -18,26 +18,10 @@
 
           <div class="flex justify-center h-1/2 m-auto">
             <!-- Sensor -->
-            <div v-if="device.type == 0">
-              <p class="flex flex-col justify-center h-[100%] text-2xl">
-                {{ device.temp }} {{ device.suffix }}
-              </p>
-            </div>
+            <Sensor v-if="device.type == 0" :device="device"/>
 
             <!-- Executor -->
-            <div v-else>
-              <button class="flex flex-col justify-center h-[100%] w-16" @click="switchExecutor(room.name, device.name)">
-                <span v-if="device.iconSet == 'bulb'">
-                  <LightBulbOff v-if="!device.status" fill="#ccc"/>
-                  <LightBulbOn v-if="device.status" fill="#ffcc00"/>
-                </span>
-
-                <span v-if="device.iconSet == 'toggleSwitch'">
-                  <ToggleSwitchOff v-if="!device.status" fill="#ccc"/>
-                  <ToggleSwitch v-if="device.status" fill="#0f0"/>
-                </span>
-              </button>
-            </div>
+            <Executor v-if="device.type == 1" :device="device"/>
           </div>
         </div>
 
@@ -58,13 +42,12 @@
 <script setup>
 import { ref } from "vue";
 import { useFirestore, useCollection } from "vuefire";
-import { getRoomCollection, switchRoomDevice } from "@/components/api";
+import { getRoomCollection } from "@/components/api";
 
 import AddIcon from "@/components/icons/AddIcon.vue";
-import LightBulbOn from "@/components/icons/LightBulbOn.vue";
-import LightBulbOff from "@/components/icons/LightBulbOff.vue";
-import ToggleSwitch from "@/components/icons/ToggleSwitch.vue";
-import ToggleSwitchOff from "@/components/icons/ToggleSwitchOff.vue";
+
+import Sensor from "@/components/Sensor.vue";
+import Executor from "@/components/Executor.vue";
 
 import AddRoomModal from "@/components/AddRoomModal.vue";
 import AddDeviceModal from "@/components/AddDeviceModal.vue";
@@ -74,10 +57,6 @@ const deviceModal = ref(false), roomModal = ref(false);
 const db = useFirestore();
 
 const roomsCollection = useCollection(getRoomCollection(db));
-
-const switchExecutor = (room, device) => {
-  switchRoomDevice(db, room, device);
-}
 
 </script>
 

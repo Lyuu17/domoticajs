@@ -1,20 +1,13 @@
 <template>
   <div>
-    <div>{{ nombre }}</div>
-    <input type="number" v-model="entrada">
-    <button @click="enviar">Enviar</button>
+    <p class="flex flex-col justify-center h-[100%] text-2xl">
+      {{ device.temp }} {{ device.suffix }}
+    </p>
   </div>
 </template>
 
 <script setup>
-const nombre = ref("");
-const entrada = ref(0);
-
-const enviar = () => {
-  
-}
+defineProps({
+  device: Object
+});
 </script>
-
-<style scoped>
-
-</style>
