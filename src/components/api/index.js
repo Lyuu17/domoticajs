@@ -40,9 +40,28 @@ export const removeRoomDevice = async (db, room, device) => {
   const doc = await queryRoom(db, room);
   if (doc == null)
     return false;
-  
+
   const data = doc.data();
   data.devices = data.devices.filter(e => e.name != device);
+
+  await updateDoc(doc.ref, { ...data });
+}
+
+export const setRoomDeviceInfo = async (db, room, device, info) => {
+  const doc = await queryRoom(db, room);
+  if (doc == null)
+    return false;
+
+  const data = doc.data();
+
+  const { devices } = data;
+
+  for (let idx in devices) {
+    if (devices[idx].name == device) {
+      devices[idx].info = info;
+      break;
+    }
+  }
 
   await updateDoc(doc.ref, { ...data });
 }
@@ -63,5 +82,5 @@ export const switchRoomDevice = async (db, room, device) => {
     }
   }
 
-  await updateDoc(doc.ref, {...data});
+  await updateDoc(doc.ref, { ...data });
 }

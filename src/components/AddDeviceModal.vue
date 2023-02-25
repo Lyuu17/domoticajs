@@ -105,7 +105,7 @@ const addComponent = async () => {
   };
 
   if (device_type.value == deviceTypes.SENSOR) {
-    deviceTemplate["temp"] = 0.0;
+    deviceTemplate["info"] = "";
     deviceTemplate["suffix"] = device_suffix.value;
   }
   else if (device_type.value == deviceTypes.EXECUTOR) {
