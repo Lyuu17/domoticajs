@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore, collection } from 'firebase/firestore'
 
 export const firebaseApp = initializeApp({
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: "AIzaSyAygMdkwlZMPUzo8_xhxFrs-6mGmojrFfo",
   authDomain: "domoticajs-14f49.firebaseapp.com",
   projectId: "domoticajs-14f49",
   storageBucket: "domoticajs-14f49.appspot.com",
