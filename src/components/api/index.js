@@ -58,6 +58,23 @@ export const removeRoomDevice = async (db, room, device) => {
   await updateDoc(doc.ref, { ...data });
 }
 
+export const updateRoomDeviceData = async (db, room, device, newData) => {
+  const doc = await queryRoom(db, room);
+  if (doc == null)
+    return false;
+
+  const data = doc.data();
+  for (let i = 0; i < data.devices.length; i++) {
+    const dev = data.devices[i];
+    if (dev.name == device) {
+      data.devices[i] = { ...newData };
+      break;
+    }
+  }
+
+  await updateDoc(doc.ref, { ...data });
+}
+
 export const setRoomDeviceInfo = async (db, room, device, info) => {
   const doc = await queryRoom(db, room);
   if (doc == null)

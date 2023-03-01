@@ -2,6 +2,8 @@
   <AddRoomModal v-if="roomModal" @closeModal="roomModal = false"/>
   <AddDeviceModal v-if="deviceModal" @closeModal="deviceModal = false" :deviceModalRoom="deviceModalRoom"/>
   <EditRoomModal v-if="editRoomModal" @closeModal="editRoomModal = false" :room_name="editRoomModalRoom"/>
+  <EditDeviceModal v-if="editDeviceModal" @closeModal="editDeviceModal = false" 
+    :deviceModalRoom="deviceModalRoom" :deviceModalDevice="deviceModalDevice" :deviceModalType="deviceModalType" :deviceModalSuffix="deviceModalSuffix" :deviceModalIconSet="deviceModalIconSet"/>
 
   <div class="flex flex-row justify-center">
     <div v-for="room in roomsCollection" :key="room.id"
@@ -24,6 +26,12 @@
             <!-- Executor -->
             <Executor v-if="device.type == 1" :device="device" :room_name="room.name"/>
           </div>
+
+          <button 
+            @click="editDeviceModal = true; deviceModalRoom = room.name; deviceModalDevice = device.name; deviceModalType = device.type; deviceModalSuffix = device.suffix; deviceModalIconSet = device.iconSet"
+            class="absolute top-0 right-6 m-1 text-white bg-white border border-transparent rounded-md focus:border-red-500 focus:ring-opacity-40 focus:ring-red-300 focus:ring focus:outline-none">
+            <PencilIcon/>
+          </button>
 
           <button @click="removeThisDevice(room.name, device.name)"
             class="absolute top-0 right-0 m-1 text-white bg-red-500 border border-transparent rounded-md focus:border-red-500 focus:ring-opacity-40 focus:ring-red-300 focus:ring focus:outline-none">
@@ -70,9 +78,11 @@ import AddRoomModal from "@/components/AddRoomModal.vue";
 import AddDeviceModal from "@/components/AddDeviceModal.vue";
 import EditRoomModal from "@/components/EditRoomModal.vue";
 import PencilIcon from "@/components/icons/PencilIcon.vue";
+import EditDeviceModal from "@/components/EditDeviceModal.vue";
 
-const deviceModal = ref(false), roomModal = ref(false), editRoomModal = ref(false);
-const deviceModalRoom = ref(""), editRoomModalRoom = ref("");
+const deviceModal = ref(false), roomModal = ref(false), editRoomModal = ref(false), editDeviceModal = ref(false);
+const deviceModalRoom = ref(""), deviceModalDevice = ref(""), deviceModalType = ref(0), deviceModalSuffix = ref(""), deviceModalIconSet = ref("");
+const editRoomModalRoom = ref("");
 
 const db = useFirestore();
 
