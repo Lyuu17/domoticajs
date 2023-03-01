@@ -19,6 +19,17 @@ export const addRoom = async (db, name) => {
   });
 }
 
+export const renameRoom = async (db, name, newRoomName) => {
+  const doc = await queryRoom(db, name);
+  if (doc == null)
+    return false;
+
+  const data = doc.data();
+  data.name = newRoomName;
+
+  await updateDoc(doc.ref, { ...data });
+}
+
 export const removeRoom = async (db, name) => {
   const doc = await queryRoom(db, name);
   await deleteDoc(doc.ref);

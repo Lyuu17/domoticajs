@@ -1,6 +1,7 @@
 <template>
   <AddRoomModal v-if="roomModal" @closeModal="roomModal = false"/>
   <AddDeviceModal v-if="deviceModal" @closeModal="deviceModal = false" :deviceModalRoom="deviceModalRoom"/>
+  <EditRoomModal v-if="editRoomModal" @closeModal="editRoomModal = false" :room_name="editRoomModalRoom"/>
 
   <div class="flex flex-row justify-center">
     <div v-for="room in roomsCollection" :key="room.id"
@@ -36,6 +37,11 @@
         </button>
       </div>
 
+      <button @click="editRoomModal = true; editRoomModalRoom = room.name"
+        class="absolute top-0 right-6 m-1 text-white bg-white border border-transparent rounded-md focus:border-red-500 focus:ring-opacity-40 focus:ring-red-300 focus:ring focus:outline-none">
+        <PencilIcon/>
+      </button>
+
       <button @click="removeThisRoom(room.name)"
         class="absolute top-0 right-0 m-1 text-white bg-red-500 border border-transparent rounded-md focus:border-red-500 focus:ring-opacity-40 focus:ring-red-300 focus:ring focus:outline-none">
         <CloseIcon/>
@@ -62,9 +68,11 @@ import Executor from "@/components/Executor.vue";
 
 import AddRoomModal from "@/components/AddRoomModal.vue";
 import AddDeviceModal from "@/components/AddDeviceModal.vue";
+import EditRoomModal from "@/components/EditRoomModal.vue";
+import PencilIcon from "@/components/icons/PencilIcon.vue";
 
-const deviceModal = ref(false), roomModal = ref(false);
-const deviceModalRoom = ref("");
+const deviceModal = ref(false), roomModal = ref(false), editRoomModal = ref(false);
+const deviceModalRoom = ref(""), editRoomModalRoom = ref("");
 
 const db = useFirestore();
 
